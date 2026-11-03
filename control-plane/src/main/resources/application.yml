@@ -1,0 +1,49 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: agentic-control-plane
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/agentic}
+    username: ${DB_USERNAME:agentic}
+    password: ${DB_PASSWORD:agentic}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+agentic:
+  tools:
+    # repository-root may point at any directory inside the Git checkout; the control plane resolves the top-level.
+    repository-root: ${REPOSITORY_ROOT:.}
+    workspace-root: ${WORKSPACE_ROOT:}
+  target-system:
+    # Internal runtime used by the control plane (Docker can use the service DNS name).
+    base-url: ${URL_SHORTENER_BASE_URL:http://localhost:8082}
+    # Browser-facing runtime shown in the dashboard and returned for demo navigation.
+    public-url: ${URL_SHORTENER_PUBLIC_URL:http://localhost:8082}
+  demo:
+    failure-injection:
+      # Deliberately disabled by default; enable only for controlled demo/test environments.
+      enabled: ${AGENTIC_FAILURE_INJECTION_ENABLED:false}
+  model:
+    # deterministic is the default so CI and demos are reproducible and require no external credential.
+    provider: ${MODEL_PROVIDER:deterministic}
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      model: ${OPENAI_MODEL:}
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com}
+      path: ${OPENAI_RESPONSES_PATH:/v1/responses}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true

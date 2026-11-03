@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ShortPath — URL Shortener</title>
+  <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">↗</span>
+      <span>ShortPath</span>
+    </a>
+    <nav>
+      <a href="#create">Create</a>
+      <a href="#recent">Recent links</a>
+      <a href="/engineering.html">Engineering evidence</a>
+      <a class="status-link" href="/actuator/health" target="_blank" rel="noreferrer"><span class="status-dot"></span> API health</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="create">
+      <div class="eyebrow">Production-minded URL shortening</div>
+      <h1>Short links.<br/><span>Clear engineering.</span></h1>
+      <p class="hero-copy">Create secure, expiring short URLs with custom aliases, idempotent writes, redirect analytics, and graceful cache degradation.</p>
+
+      <form id="shorten-form" class="shorten-card">
+        <label class="field field-wide">
+          <span>Destination URL</span>
+          <input id="url" type="url" required maxlength="4096" placeholder="https://example.com/very/long/path" autocomplete="off"/>
+        </label>
+        <div class="field-grid">
+          <label class="field">
+            <span>Custom alias <small>optional</small></span>
+            <input id="alias" type="text" maxlength="32" placeholder="quarterly-report" autocomplete="off"/>
+          </label>
+          <label class="field">
+            <span>Expires <small>optional</small></span>
+            <input id="expires" type="datetime-local"/>
+          </label>
+        </div>
+        <div class="form-actions">
+          <div class="hint">HTTP/HTTPS destinations only. Unsafe local/private targets are rejected.</div>
+          <button id="submit-btn" type="submit">Shorten URL <span>→</span></button>
+        </div>
+        <div id="form-message" class="message hidden" role="status"></div>
+      </form>
+    </section>
+
+    <section id="result-section" class="result-section hidden">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Created successfully</div>
+          <h2>Your short link is ready</h2>
+        </div>
+      </div>
+      <div class="result-card">
+        <div>
+          <div class="result-label">Short URL</div>
+          <a id="result-link" class="result-link" href="#" target="_blank" rel="noreferrer"></a>
+          <div id="result-destination" class="destination"></div>
+        </div>
+        <div class="result-actions">
+          <button id="copy-btn" class="secondary">Copy</button>
+          <a id="open-btn" class="button-link" href="#" target="_blank" rel="noreferrer">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="recent" class="panel-section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Local demo history</div>
+          <h2>Recent links</h2>
+        </div>
+        <button id="clear-history" class="text-button">Clear history</button>
+      </div>
+      <div class="table-card">
+        <div id="empty-state" class="empty-state">Create a short URL to see it here.</div>
+        <div class="table-wrap hidden" id="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Short link</th><th>Destination</th><th>Status</th><th>Created</th><th></th></tr>
+            </thead>
+            <tbody id="recent-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="details-section" class="panel-section hidden">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Operational insight</div>
+          <h2 id="details-title">Link analytics</h2>
+        </div>
+        <button id="deactivate-btn" class="danger-button">Deactivate</button>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-card"><span>Total clicks</span><strong id="metric-clicks">0</strong></div>
+        <div class="metric-card"><span>Last clicked</span><strong id="metric-last-click">—</strong></div>
+        <div class="metric-card"><span>Status</span><strong id="metric-status">—</strong></div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-title">Last 7 days</div>
+        <div id="bars" class="bars"></div>
+      </div>
+      <div class="analytics-split">
+        <div class="analytics-card">
+          <div class="analytics-title">Top referrers</div>
+          <div id="referrer-breakdown" class="breakdown-list"></div>
+        </div>
+        <div class="analytics-card">
+          <div class="analytics-title">Browser families</div>
+          <div id="browser-breakdown" class="breakdown-list"></div>
+        </div>
+      </div>
+      <div class="analytics-card">
+        <div class="analytics-title">Recent click events <span class="analytics-note">latest 25</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Time</th><th>Referrer</th><th>Browser</th></tr></thead>
+            <tbody id="event-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>ShortPath demo • Java 21 • Spring Boot • PostgreSQL • Redis optional</div>
+    <a href="/engineering.html">How AI assisted the engineering →</a>
+  </footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

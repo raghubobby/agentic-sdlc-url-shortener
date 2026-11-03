@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agentic URL Shortener</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<header class="app-header">
+  <div class="brand">
+    <div class="brand-mark">A</div>
+    <div>
+      <strong>Agentic URL Shortener</strong>
+      <span>Engineering System</span>
+    </div>
+  </div>
+  <div class="target-line">
+    <span id="targetStatus" class="target-pill">Checking target…</span>
+    <span id="targetGit" class="target-git"></span>
+    <a id="openTarget" href="http://localhost:8082" target="_blank" rel="noreferrer">Open app ↗</a>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="intro">
+    <p class="kicker">GOVERNED AGENTIC SDLC</p>
+    <h1>From requirement to review-ready change.</h1>
+    <p>Agents plan, implement and validate. Humans keep authority over risky decisions.</p>
+  </section>
+
+  <section class="card composer">
+    <div class="scenario-switch" role="tablist" aria-label="Scenario type">
+      <button class="scenario-option active" data-select-scenario="greenfield" type="button">
+        <span>Greenfield</span><small>New feature</small>
+      </button>
+      <button class="scenario-option" data-select-scenario="brownfield" type="button">
+        <span>Brownfield</span><small>Existing code</small>
+      </button>
+      <button class="scenario-option" data-select-scenario="ambiguous" type="button">
+        <span>Ambiguous</span><small>Safe stop</small>
+      </button>
+    </div>
+
+    <div class="composer-body">
+      <div class="scenario-summary">
+        <strong id="scenarioTitle">Build a new URL-shortener capability</strong>
+        <span id="scenarioHint">The agents decompose, build in parallel, validate, then stop at governed approval gates.</span>
+      </div>
+      <label for="requirementInput">Requirement</label>
+      <textarea id="requirementInput"></textarea>
+      <div class="run-row">
+        <button id="runWorkflowBtn" class="primary" type="button">Run Greenfield</button>
+        <button id="retryDemoBtn" class="ghost" type="button">Demo one retry</button>
+        <span class="run-note" id="runNote">Changes are restricted to <code>url-shortener/**</code>.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card workflow" id="workflowPanel" hidden>
+    <div class="workflow-head">
+      <div>
+        <p class="kicker">ACTIVE WORKFLOW</p>
+        <h2 id="workflowTitle">Workflow</h2>
+      </div>
+      <div class="workflow-state">
+        <span id="workflowStatus" class="status-pill">—</span>
+        <span id="planRevision">revision —</span>
+      </div>
+    </div>
+
+    <p id="requirement" class="active-requirement"></p>
+
+    <div class="flow" id="dag" aria-label="Agentic workflow">
+      <div class="node" data-node="requirements"><b>Requirements</b><small>Pending</small></div>
+      <div class="connector">→</div>
+      <div class="node" data-node="planning"><b>Plan</b><small>Pending</small></div>
+      <div class="connector">→</div>
+      <div class="node" data-node="architecture"><b>Architecture</b><small>Pending</small></div>
+      <div class="connector">→</div>
+      <div class="parallel-stage">
+        <span>Build</span>
+        <div class="node compact" data-node="implementation-api"><b>API</b><small>Pending</small></div>
+        <div class="node compact" data-node="implementation-persistence"><b>Data</b><small>Pending</small></div>
+      </div>
+      <div class="connector">→</div>
+      <div class="parallel-stage">
+        <span>Verify</span>
+        <div class="node compact" data-node="validation-tests"><b>Tests</b><small>Pending</small></div>
+        <div class="node compact" data-node="security-review"><b>Security</b><small>Pending</small></div>
+      </div>
+      <div class="connector">→</div>
+      <div class="node" data-node="release-approval"><b>Approval</b><small>Pending</small></div>
+      <div class="connector">→</div>
+      <div class="node" data-node="release-readiness"><b>Ready</b><small>Pending</small></div>
+    </div>
+
+    <div id="nodeInsight" class="node-insight" hidden></div>
+  </section>
+
+  <section class="card human-gate" id="actionArea" hidden>
+    <div class="gate-icon">H</div>
+    <div class="gate-content">
+      <p class="kicker">HUMAN CONTROL</p>
+      <div id="humanAction"></div>
+    </div>
+  </section>
+
+  <section class="card outcome" id="outcomePanel" hidden>
+    <div class="outcome-head">
+      <div>
+        <p class="kicker">ENGINEERING OUTCOME</p>
+        <h2 id="outcomeTitle">Review-ready change</h2>
+        <p id="outcomeText">The workflow completed with governed evidence.</p>
+      </div>
+      <span class="outcome-check">✓</span>
+    </div>
+    <div id="outcomeMetrics" class="outcome-metrics"></div>
+    <div class="outcome-actions">
+      <button id="showEvidenceBtn" class="ghost" type="button">View technical evidence</button>
+      <code id="workflowId"></code>
+    </div>
+  </section>
+
+  <details class="card evidence-drawer" id="technicalEvidence" hidden>
+    <summary>
+      <span>
+        <strong>Technical evidence</strong>
+        <small>Metrics, audit trail, artifacts, model calls and tool executions</small>
+      </span>
+      <span class="chevron">⌄</span>
+    </summary>
+
+    <div class="evidence-body">
+      <div id="recoveryStory" class="recovery-story" hidden></div>
+      <div id="reliability" class="metric-grid"></div>
+
+      <div class="evidence-columns">
+        <div>
+          <div class="section-label">Audit trail</div>
+          <div id="audit" class="timeline"></div>
+        </div>
+        <div>
+          <div class="evidence-tabs">
+            <button class="tab active" data-tab="artifacts" type="button">Artifacts</button>
+            <button class="tab" data-tab="models" type="button">Models</button>
+            <button class="tab" data-tab="tools" type="button">Tools</button>
+          </div>
+          <div id="evidence" class="evidence-list"></div>
+        </div>
+      </div>
+    </div>
+  </details>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+
+<footer class="footer">
+  Agents can reason, edit isolated worktrees, build and test. They cannot push, merge or deploy.
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/agent/CapabilityEnvelopeTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/approval/ApprovalServiceIdempotencyTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/artifact/ArtifactHasherTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/clarification/ClarificationCodecTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/demo/FailureInjectionEntityTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/governance/PolicyEngineTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/llm/DeterministicModelGatewayTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/observability/ControlPlaneMetricsTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/recovery/RetryEvaluatorTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/replan/ReplanViewTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/scenario/ScenarioCatalogTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/targetsystem/TargetSystemServiceTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/tool/ArtifactExecutionRendererTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/tool/ToolPolicyInterceptorTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/tool/ToolScopePolicyTest.java
+/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/src/test/java/com/agentic/sdlc/controlplane/workflow/WorkflowDefinitionTest.java

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest" time="0.115" tests="4" errors="0" skipped="0" failures="1" flakes="0">
+  <properties>
+    <property name="java.specification.version" value="27"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/target/test-classes:/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/target/classes:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-web/4.1.1/spring-boot-starter-web-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-jackson/4.1.1/spring-boot-starter-jackson-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-jackson/4.1.1/spring-boot-jackson-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/4.1.1/spring-boot-starter-tomcat-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat-runtime/4.1.1/spring-boot-starter-tomcat-runtime-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1.jar:/Users/bobby/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/11.0.24/tomcat-embed-core-11.0.24.jar:/Users/bobby/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/11.0.24/tomcat-embed-websocket-11.0.24.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-tomcat/4.1.1/spring-boot-tomcat-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-http-converter/4.1.1/spring-boot-http-converter-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot/4.1.1/spring-boot-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-context/7.0.9/spring-context-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-web/7.0.9/spring-web-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-beans/7.0.9/spring-beans-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-webmvc/4.1.1/spring-boot-webmvc-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-servlet/4.1.1/spring-boot-servlet-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-webmvc/7.0.9/spring-webmvc-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-aop/7.0.9/spring-aop-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-expression/7.0.9/spring-expression-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-validation/4.1.1/spring-boot-starter-validation-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter/4.1.1/spring-boot-starter-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-logging/4.1.1/spring-boot-starter-logging-4.1.1.jar:/Users/bobby/.m2/repository/ch/qos/logback/logback-classic/1.5.38/logback-classic-1.5.38.jar:/Users/bobby/.m2/repository/ch/qos/logback/logback-core/1.5.38/logback-core-1.5.38.jar:/Users/bobby/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.25.5/log4j-to-slf4j-2.25.5.jar:/Users/bobby/.m2/repository/org/apache/logging/log4j/log4j-api/2.25.5/log4j-api-2.25.5.jar:/Users/bobby/.m2/repository/org/slf4j/jul-to-slf4j/2.0.18/jul-to-slf4j-2.0.18.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/4.1.1/spring-boot-autoconfigure-4.1.1.jar:/Users/bobby/.m2/repository/jakarta/annotation/jakarta.annotation-api/3.0.0/jakarta.annotation-api-3.0.0.jar:/Users/bobby/.m2/repository/org/yaml/snakeyaml/2.6/snakeyaml-2.6.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-validation/4.1.1/spring-boot-validation-4.1.1.jar:/Users/bobby/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/11.0.24/tomcat-embed-el-11.0.24.jar:/Users/bobby/.m2/repository/org/hibernate/validator/hibernate-validator/9.1.3.Final/hibernate-validator-9.1.3.Final.jar:/Users/bobby/.m2/repository/jakarta/validation/jakarta.validation-api/3.1.1/jakarta.validation-api-3.1.1.jar:/Users/bobby/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/Users/bobby/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/4.1.1/spring-boot-starter-data-jpa-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/4.1.1/spring-boot-starter-jdbc-4.1.1.jar:/Users/bobby/.m2/repository/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-data-jpa/4.1.1/spring-boot-data-jpa-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-data-commons/4.1.1/spring-boot-data-commons-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-persistence/4.1.1/spring-boot-persistence-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/data/spring-data-commons/4.1.1/spring-data-commons-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-hibernate/4.1.1/spring-boot-hibernate-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-jpa/4.1.1/spring-boot-jpa-4.1.1.jar:/Users/bobby/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar:/Users/bobby/.m2/repository/org/hibernate/orm/hibernate-core/7.4.5.Final/hibernate-core-7.4.5.Final.jar:/Users/bobby/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/bobby/.m2/repository/org/hibernate/models/hibernate-models/1.1.1/hibernate-models-1.1.1.jar:/Users/bobby/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.9/jaxb-runtime-4.0.9.jar:/Users/bobby/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.9/jaxb-core-4.0.9.jar:/Users/bobby/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/Users/bobby/.m2/repository/org/glassfish/jaxb/txw2/4.0.9/txw2-4.0.9.jar:/Users/bobby/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/bobby/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-orm/7.0.9/spring-orm-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/data/spring-data-jpa/4.1.1/spring-data-jpa-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-tx/7.0.9/spring-tx-7.0.9.jar:/Users/bobby/.m2/repository/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.jar:/Users/bobby/.m2/repository/org/springframework/spring-aspects/7.0.9/spring-aspects-7.0.9.jar:/Users/bobby/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-jdbc/4.1.1/spring-boot-jdbc-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-sql/4.1.1/spring-boot-sql-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-transaction/4.1.1/spring-boot-transaction-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-jdbc/7.0.9/spring-jdbc-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-actuator/4.1.1/spring-boot-starter-actuator-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-micrometer-metrics/4.1.1/spring-boot-starter-micrometer-metrics-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-micrometer-metrics/4.1.1/spring-boot-micrometer-metrics-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-micrometer-observation/4.1.1/spring-boot-micrometer-observation-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/4.1.1/spring-boot-actuator-autoconfigure-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-actuator/4.1.1/spring-boot-actuator-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-health/4.1.1/spring-boot-health-4.1.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-observation/1.17.1/micrometer-observation-1.17.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-commons/1.17.1/micrometer-commons-1.17.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-jakarta9/1.17.1/micrometer-jakarta9-1.17.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-registry-prometheus/1.17.1/micrometer-registry-prometheus-1.17.1.jar:/Users/bobby/.m2/repository/org/jspecify/jspecify/1.0.1/jspecify-1.0.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-core/1.17.1/micrometer-core-1.17.1.jar:/Users/bobby/.m2/repository/org/hdrhistogram/HdrHistogram/2.2.2/HdrHistogram-2.2.2.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-core/1.7.0/prometheus-metrics-core-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-model/1.7.0/prometheus-metrics-model-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-config/1.7.0/prometheus-metrics-config-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-tracer-common/1.7.0/prometheus-metrics-tracer-common-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-exposition-formats/1.7.0/prometheus-metrics-exposition-formats-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-exposition-textformats/1.7.0/prometheus-metrics-exposition-textformats-1.7.0.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-flyway/4.1.1/spring-boot-starter-flyway-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-flyway/4.1.1/spring-boot-flyway-4.1.1.jar:/Users/bobby/.m2/repository/org/flywaydb/flyway-database-postgresql/12.4.0/flyway-database-postgresql-12.4.0.jar:/Users/bobby/.m2/repository/org/flywaydb/flyway-core/12.4.0/flyway-core-12.4.0.jar:/Users/bobby/.m2/repository/tools/jackson/core/jackson-databind/3.1.5/jackson-databind-3.1.5.jar:/Users/bobby/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/Users/bobby/.m2/repository/tools/jackson/core/jackson-core/3.1.5/jackson-core-3.1.5.jar:/Users/bobby/.m2/repository/org/postgresql/postgresql/42.7.13/postgresql-42.7.13.jar:/Users/bobby/.m2/repository/org/checkerframework/checker-qual/3.55.1/checker-qual-3.55.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-test/4.1.1/spring-boot-starter-test-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-test/4.1.1/spring-boot-test-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/4.1.1/spring-boot-test-autoconfigure-4.1.1.jar:/Users/bobby/.m2/repository/com/jayway/jsonpath/json-path/2.10.0/json-path-2.10.0.jar:/Users/bobby/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar:/Users/bobby/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5.jar:/Users/bobby/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/Users/bobby/.m2/repository/net/minidev/json-smart/2.6.0/json-smart-2.6.0.jar:/Users/bobby/.m2/repository/net/minidev/accessors-smart/2.6.0/accessors-smart-2.6.0.jar:/Users/bobby/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/Users/bobby/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/Users/bobby/.m2/repository/net/bytebuddy/byte-buddy/1.18.11/byte-buddy-1.18.11.jar:/Users/bobby/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/Users/bobby/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/Users/bobby/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/bobby/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/Users/bobby/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/Users/bobby/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/Users/bobby/.m2/repository/org/mockito/mockito-core/5.23.0/mockito-core-5.23.0.jar:/Users/bobby/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.11/byte-buddy-agent-1.18.11.jar:/Users/bobby/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/bobby/.m2/repository/org/mockito/mockito-junit-jupiter/5.23.0/mockito-junit-jupiter-5.23.0.jar:/Users/bobby/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/bobby/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/bobby/.m2/repository/org/springframework/spring-core/7.0.9/spring-core-7.0.9.jar:/Users/bobby/.m2/repository/commons-logging/commons-logging/1.3.6/commons-logging-1.3.6.jar:/Users/bobby/.m2/repository/org/springframework/spring-test/7.0.9/spring-test-7.0.9.jar:/Users/bobby/.m2/repository/org/xmlunit/xmlunit-core/2.11.0/xmlunit-core-2.11.0.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Chicago"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="27"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/Users/bobby/Library/Java/JavaVirtualMachines/openjdk-27.0.1.0.3/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/target/surefire/surefirebooter-20261102223012193_3.jar /Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/target/surefire 2026-11-02T22-30-12_161-jvmRun1 surefire-20261102223012193_1tmp surefire_0-20261102223012193_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/target/test-classes:/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/target/classes:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-web/4.1.1/spring-boot-starter-web-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-jackson/4.1.1/spring-boot-starter-jackson-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-jackson/4.1.1/spring-boot-jackson-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/4.1.1/spring-boot-starter-tomcat-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat-runtime/4.1.1/spring-boot-starter-tomcat-runtime-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-web-server/4.1.1/spring-boot-web-server-4.1.1.jar:/Users/bobby/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/11.0.24/tomcat-embed-core-11.0.24.jar:/Users/bobby/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/11.0.24/tomcat-embed-websocket-11.0.24.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-tomcat/4.1.1/spring-boot-tomcat-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-http-converter/4.1.1/spring-boot-http-converter-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot/4.1.1/spring-boot-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-context/7.0.9/spring-context-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-web/7.0.9/spring-web-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-beans/7.0.9/spring-beans-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-webmvc/4.1.1/spring-boot-webmvc-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-servlet/4.1.1/spring-boot-servlet-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-webmvc/7.0.9/spring-webmvc-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-aop/7.0.9/spring-aop-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/spring-expression/7.0.9/spring-expression-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-validation/4.1.1/spring-boot-starter-validation-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter/4.1.1/spring-boot-starter-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-logging/4.1.1/spring-boot-starter-logging-4.1.1.jar:/Users/bobby/.m2/repository/ch/qos/logback/logback-classic/1.5.38/logback-classic-1.5.38.jar:/Users/bobby/.m2/repository/ch/qos/logback/logback-core/1.5.38/logback-core-1.5.38.jar:/Users/bobby/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.25.5/log4j-to-slf4j-2.25.5.jar:/Users/bobby/.m2/repository/org/apache/logging/log4j/log4j-api/2.25.5/log4j-api-2.25.5.jar:/Users/bobby/.m2/repository/org/slf4j/jul-to-slf4j/2.0.18/jul-to-slf4j-2.0.18.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/4.1.1/spring-boot-autoconfigure-4.1.1.jar:/Users/bobby/.m2/repository/jakarta/annotation/jakarta.annotation-api/3.0.0/jakarta.annotation-api-3.0.0.jar:/Users/bobby/.m2/repository/org/yaml/snakeyaml/2.6/snakeyaml-2.6.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-validation/4.1.1/spring-boot-validation-4.1.1.jar:/Users/bobby/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/11.0.24/tomcat-embed-el-11.0.24.jar:/Users/bobby/.m2/repository/org/hibernate/validator/hibernate-validator/9.1.3.Final/hibernate-validator-9.1.3.Final.jar:/Users/bobby/.m2/repository/jakarta/validation/jakarta.validation-api/3.1.1/jakarta.validation-api-3.1.1.jar:/Users/bobby/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/Users/bobby/.m2/repository/com/fasterxml/classmate/1.7.3/classmate-1.7.3.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/4.1.1/spring-boot-starter-data-jpa-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/4.1.1/spring-boot-starter-jdbc-4.1.1.jar:/Users/bobby/.m2/repository/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-data-jpa/4.1.1/spring-boot-data-jpa-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-data-commons/4.1.1/spring-boot-data-commons-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-persistence/4.1.1/spring-boot-persistence-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/data/spring-data-commons/4.1.1/spring-data-commons-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-hibernate/4.1.1/spring-boot-hibernate-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-jpa/4.1.1/spring-boot-jpa-4.1.1.jar:/Users/bobby/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar:/Users/bobby/.m2/repository/org/hibernate/orm/hibernate-core/7.4.5.Final/hibernate-core-7.4.5.Final.jar:/Users/bobby/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/Users/bobby/.m2/repository/org/hibernate/models/hibernate-models/1.1.1/hibernate-models-1.1.1.jar:/Users/bobby/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.9/jaxb-runtime-4.0.9.jar:/Users/bobby/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.9/jaxb-core-4.0.9.jar:/Users/bobby/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/Users/bobby/.m2/repository/org/glassfish/jaxb/txw2/4.0.9/txw2-4.0.9.jar:/Users/bobby/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/Users/bobby/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-orm/7.0.9/spring-orm-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/data/spring-data-jpa/4.1.1/spring-data-jpa-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-tx/7.0.9/spring-tx-7.0.9.jar:/Users/bobby/.m2/repository/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.jar:/Users/bobby/.m2/repository/org/springframework/spring-aspects/7.0.9/spring-aspects-7.0.9.jar:/Users/bobby/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-jdbc/4.1.1/spring-boot-jdbc-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-sql/4.1.1/spring-boot-sql-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-transaction/4.1.1/spring-boot-transaction-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/spring-jdbc/7.0.9/spring-jdbc-7.0.9.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-actuator/4.1.1/spring-boot-starter-actuator-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-micrometer-metrics/4.1.1/spring-boot-starter-micrometer-metrics-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-micrometer-metrics/4.1.1/spring-boot-micrometer-metrics-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-micrometer-observation/4.1.1/spring-boot-micrometer-observation-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/4.1.1/spring-boot-actuator-autoconfigure-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-actuator/4.1.1/spring-boot-actuator-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-health/4.1.1/spring-boot-health-4.1.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-observation/1.17.1/micrometer-observation-1.17.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-commons/1.17.1/micrometer-commons-1.17.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-jakarta9/1.17.1/micrometer-jakarta9-1.17.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-registry-prometheus/1.17.1/micrometer-registry-prometheus-1.17.1.jar:/Users/bobby/.m2/repository/org/jspecify/jspecify/1.0.1/jspecify-1.0.1.jar:/Users/bobby/.m2/repository/io/micrometer/micrometer-core/1.17.1/micrometer-core-1.17.1.jar:/Users/bobby/.m2/repository/org/hdrhistogram/HdrHistogram/2.2.2/HdrHistogram-2.2.2.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-core/1.7.0/prometheus-metrics-core-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-model/1.7.0/prometheus-metrics-model-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-config/1.7.0/prometheus-metrics-config-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-tracer-common/1.7.0/prometheus-metrics-tracer-common-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-exposition-formats/1.7.0/prometheus-metrics-exposition-formats-1.7.0.jar:/Users/bobby/.m2/repository/io/prometheus/prometheus-metrics-exposition-textformats/1.7.0/prometheus-metrics-exposition-textformats-1.7.0.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-flyway/4.1.1/spring-boot-starter-flyway-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-flyway/4.1.1/spring-boot-flyway-4.1.1.jar:/Users/bobby/.m2/repository/org/flywaydb/flyway-database-postgresql/12.4.0/flyway-database-postgresql-12.4.0.jar:/Users/bobby/.m2/repository/org/flywaydb/flyway-core/12.4.0/flyway-core-12.4.0.jar:/Users/bobby/.m2/repository/tools/jackson/core/jackson-databind/3.1.5/jackson-databind-3.1.5.jar:/Users/bobby/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/Users/bobby/.m2/repository/tools/jackson/core/jackson-core/3.1.5/jackson-core-3.1.5.jar:/Users/bobby/.m2/repository/org/postgresql/postgresql/42.7.13/postgresql-42.7.13.jar:/Users/bobby/.m2/repository/org/checkerframework/checker-qual/3.55.1/checker-qual-3.55.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-starter-test/4.1.1/spring-boot-starter-test-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-test/4.1.1/spring-boot-test-4.1.1.jar:/Users/bobby/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/4.1.1/spring-boot-test-autoconfigure-4.1.1.jar:/Users/bobby/.m2/repository/com/jayway/jsonpath/json-path/2.10.0/json-path-2.10.0.jar:/Users/bobby/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar:/Users/bobby/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5.jar:/Users/bobby/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/Users/bobby/.m2/repository/net/minidev/json-smart/2.6.0/json-smart-2.6.0.jar:/Users/bobby/.m2/repository/net/minidev/accessors-smart/2.6.0/accessors-smart-2.6.0.jar:/Users/bobby/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/Users/bobby/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/Users/bobby/.m2/repository/net/bytebuddy/byte-buddy/1.18.11/byte-buddy-1.18.11.jar:/Users/bobby/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/Users/bobby/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/Users/bobby/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/bobby/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/Users/bobby/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:/Users/bobby/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/Users/bobby/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/Users/bobby/.m2/repository/org/mockito/mockito-core/5.23.0/mockito-core-5.23.0.jar:/Users/bobby/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.11/byte-buddy-agent-1.18.11.jar:/Users/bobby/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/bobby/.m2/repository/org/mockito/mockito-junit-jupiter/5.23.0/mockito-junit-jupiter-5.23.0.jar:/Users/bobby/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/Users/bobby/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/Users/bobby/.m2/repository/org/springframework/spring-core/7.0.9/spring-core-7.0.9.jar:/Users/bobby/.m2/repository/commons-logging/commons-logging/1.3.6/commons-logging-1.3.6.jar:/Users/bobby/.m2/repository/org/springframework/spring-test/7.0.9/spring-test-7.0.9.jar:/Users/bobby/.m2/repository/org/xmlunit/xmlunit-core/2.11.0/xmlunit-core-2.11.0.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/bobby"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-10-25"/>
+    <property name="java.home" value="/Users/bobby/Library/Java/JavaVirtualMachines/openjdk-27.0.1.0.3/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane/target/surefire/surefirebooter-20261102223012193_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="27.0.1.0.3+1-2"/>
+    <property name="user.name" value="bobby"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="26.6"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/bobby/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/6_/78yfyk0s51sd0why0r3nrqqh0000gn/T/"/>
+    <property name="java.version" value="27.0.1.0.3"/>
+    <property name="user.dir" value="/Users/bobby/Downloads/agentic-sdlc-url-shortener/control-plane"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/bobby/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="27.0.1.0.3+1-2"/>
+    <property name="stdin.encoding" value="UTF-8"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="71.0"/>
+  </properties>
+  <testcase name="ambiguousRequirementSafeStopsWithConcreteQuestions" classname="com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest" time="0.037"/>
+  <testcase name="greenfieldImplementationProducesGovernedPatchActions" classname="com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest" time="0.011">
+    <failure message="&#10;Expected size: 4 but was: 2 in:&#10;[ToolAction[tool=APPLY_PATCH, path=null, content=diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java&#10;index b22dc15..7ae9de1 100644&#10;--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java&#10;+++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java&#10;@@ -8,5 +8,14 @@ import java.time.Instant;&#10; public record CreateShortUrlRequest(&#10;         @NotBlank @Size(max = 4096) String url,&#10;         @Size(max = 32) String customAlias,&#10;-        Instant expiresAt&#10;-) {}&#10;+        Instant expiresAt,&#10;+        Boolean singleUse&#10;+) {&#10;+    public CreateShortUrlRequest {&#10;+        singleUse = Boolean.TRUE.equals(singleUse);&#10;+    }&#10;+&#10;+    public CreateShortUrlRequest(String url, String customAlias, Instant expiresAt) {&#10;+        this(url, customAlias, expiresAt, false);&#10;+    }&#10;+}&#10;diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java&#10;index f94a971..af30f26 100644&#10;--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java&#10;+++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java&#10;@@ -3,5 +3,6 @@ package com.agentic.sdlc.urlshortener.api;&#10; public enum LinkStatus {&#10;     ACTIVE,&#10;     EXPIRED,&#10;-    DEACTIVATED&#10;+    DEACTIVATED,&#10;+    CONSUMED&#10; }&#10;diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java&#10;index 5d6aae9..a0743bc 100644&#10;--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java&#10;+++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java&#10;@@ -30,6 +30,12 @@ public class ShortUrlEntity {&#10;     @Column(name = &quot;deactivated_at&quot;)&#10;     private Instant deactivatedAt;&#10; &#10;+    @Column(name = &quot;single_use&quot;, nullable = false)&#10;+    private boolean singleUse;&#10;+&#10;+    @Column(name = &quot;consumed_at&quot;)&#10;+    private Instant consumedAt;&#10;+&#10;     @Column(name = &quot;idempotency_key&quot;, unique = true, length = 200)&#10;     private String idempotencyKey;&#10; &#10;@@ -43,6 +49,11 @@ public class ShortUrlEntity {&#10; &#10;     public ShortUrlEntity(UUID id, String shortCode, String destinationUrl, Instant createdAt,&#10;                           Instant expiresAt, String idempotencyKey, String requestHash) {&#10;+        this(id, shortCode, destinationUrl, createdAt, expiresAt, idempotencyKey, requestHash, false);&#10;+    }&#10;+&#10;+    public ShortUrlEntity(UUID id, String shortCode, String destinationUrl, Instant createdAt,&#10;+                          Instant expiresAt, String idempotencyKey, String requestHash, boolean singleUse) {&#10;         this.id = id;&#10;         this.shortCode = shortCode;&#10;         this.destinationUrl = destinationUrl;&#10;@@ -50,6 +61,7 @@ public class ShortUrlEntity {&#10;         this.expiresAt = expiresAt;&#10;         this.idempotencyKey = idempotencyKey;&#10;         this.requestHash = requestHash;&#10;+        this.singleUse = singleUse;&#10;     }&#10; &#10;     public UUID getId() { return id; }&#10;@@ -58,6 +70,8 @@ public class ShortUrlEntity {&#10;     public Instant getCreatedAt() { return createdAt; }&#10;     public Instant getExpiresAt() { return expiresAt; }&#10;     public Instant getDeactivatedAt() { return deactivatedAt; }&#10;+    public boolean isSingleUse() { return singleUse; }&#10;+    public Instant getConsumedAt() { return consumedAt; }&#10;     public String getIdempotencyKey() { return idempotencyKey; }&#10;     public String getRequestHash() { return requestHash; }&#10;     public long getVersion() { return version; }&#10;@@ -66,8 +80,22 @@ public class ShortUrlEntity {&#10;         return expiresAt != null &amp;&amp; !expiresAt.isAfter(now);&#10;     }&#10; &#10;+    public boolean isConsumed() {&#10;+        return singleUse &amp;&amp; consumedAt != null;&#10;+    }&#10;+&#10;     public boolean isActive(Instant now) {&#10;-        return deactivatedAt == null &amp;&amp; !isExpired(now);&#10;+        return deactivatedAt == null &amp;&amp; !isExpired(now) &amp;&amp; !isConsumed();&#10;+    }&#10;+&#10;+    public void consume(Instant now) {&#10;+        if (!singleUse) {&#10;+            throw new IllegalStateException(&quot;Only single-use links can be consumed&quot;);&#10;+        }&#10;+        if (consumedAt != null) {&#10;+            throw new IllegalStateException(&quot;Single-use link is already consumed&quot;);&#10;+        }&#10;+        consumedAt = now;&#10;     }&#10; &#10;     public void deactivate(Instant now) {&#10;diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java&#10;index ac22c1f..148be0a 100644&#10;--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java&#10;+++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java&#10;@@ -2,11 +2,23 @@ package com.agentic.sdlc.urlshortener.repository;&#10; &#10; import com.agentic.sdlc.urlshortener.domain.ShortUrlEntity;&#10; import org.springframework.data.jpa.repository.JpaRepository;&#10;+import org.springframework.data.jpa.repository.Modifying;&#10;+import org.springframework.data.jpa.repository.Query;&#10;+import org.springframework.data.repository.query.Param;&#10;+import org.springframework.transaction.annotation.Transactional;&#10; &#10;+import java.time.Instant;&#10; import java.util.Optional;&#10; import java.util.UUID;&#10; &#10; public interface ShortUrlRepository extends JpaRepository&lt;ShortUrlEntity, UUID&gt; {&#10;     Optional&lt;ShortUrlEntity&gt; findByShortCode(String shortCode);&#10;     Optional&lt;ShortUrlEntity&gt; findByIdempotencyKey(String idempotencyKey);&#10;+&#10;+    @Modifying(clearAutomatically = true, flushAutomatically = true)&#10;+    @Transactional&#10;+    @Query(&quot;update ShortUrlEntity s set s.consumedAt = :now &quot; +&#10;+            &quot;where s.shortCode = :shortCode and s.singleUse = true and s.consumedAt is null &quot; +&#10;+            &quot;and s.deactivatedAt is null and (s.expiresAt is null or s.expiresAt &gt; :now)&quot;)&#10;+    int consumeSingleUseIfAvailable(@Param(&quot;shortCode&quot;) String shortCode, @Param(&quot;now&quot;) Instant now);&#10; }&#10;diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java&#10;index d0b48fa..07f908b 100644&#10;--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java&#10;+++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java&#10;@@ -8,7 +8,6 @@ import io.micrometer.core.instrument.Counter;&#10; import io.micrometer.core.instrument.MeterRegistry;&#10; import org.springframework.dao.DataAccessException;&#10; import org.springframework.stereotype.Service;&#10;-import org.springframework.transaction.annotation.Transactional;&#10; &#10; import java.time.Clock;&#10; import java.time.Instant;&#10;@@ -33,7 +32,6 @@ public class RedirectService {&#10;         this.analyticsFailures = Counter.builder(&quot;url.analytics.record.failure&quot;).register(meterRegistry);&#10;     }&#10; &#10;-    @Transactional(readOnly = true)&#10;     public RedirectResult resolve(String code, String referrer, String userAgent) {&#10;         var cached = cache.get(code);&#10;         if (cached.isPresent()) {&#10;@@ -47,9 +45,22 @@ public class RedirectService {&#10;         }&#10; &#10;         cacheMisses.increment();&#10;-        ShortUrlEntity entity = repository.findByShortCode(code).orElseThrow(() -&gt; new NotFoundException(code));&#10;-        ensureActive(entity, clock.instant());&#10;-        cache.put(code, entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());&#10;+        ShortUrlEntity entity = repository.findByShortCode(code)&#10;+                .orElseThrow(() -&gt; new NotFoundException(code));&#10;+        Instant now = clock.instant();&#10;+        ensureActive(entity, now);&#10;+&#10;+        if (entity.isSingleUse()) {&#10;+            int consumed = repository.consumeSingleUseIfAvailable(code, now);&#10;+            if (consumed != 1) {&#10;+                cache.evict(code);&#10;+                throw new GoneException(code);&#10;+            }&#10;+            cache.evict(code);&#10;+        } else {&#10;+            cache.put(code, entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());&#10;+        }&#10;+&#10;         recordAnalytics(entity.getId(), referrer, userAgent);&#10;         return new RedirectResult(entity.getId(), entity.getDestinationUrl(), false);&#10;     }&#10;diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java&#10;index 3106d89..6607335 100644&#10;--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java&#10;+++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java&#10;@@ -14,7 +14,8 @@ public class RequestHasher {&#10;     public String hash(CreateShortUrlRequest request) {&#10;         String canonical = request.url().trim() + &quot;\n&quot; +&#10;                 normalize(request.customAlias()) + &quot;\n&quot; +&#10;-                normalize(request.expiresAt());&#10;+                normalize(request.expiresAt()) + &quot;\n&quot; +&#10;+                request.singleUse();&#10;         try {&#10;             return HexFormat.of().formatHex(MessageDigest.getInstance(&quot;SHA-256&quot;)&#10;                     .digest(canonical.getBytes(StandardCharsets.UTF_8)));&#10;diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java&#10;index 1a7a389..d781d53 100644&#10;--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java&#10;+++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java&#10;@@ -60,7 +60,8 @@ public class ShortUrlService {&#10;             throw new com.agentic.sdlc.urlshortener.api.InvalidRequestException(&quot;expiresAt&quot;, &quot;must be in the future&quot;);&#10;         }&#10;         String normalizedKey = normalizeIdempotencyKey(idempotencyKey);&#10;-        String requestHash = requestHasher.hash(new CreateShortUrlRequest(normalizedUrl, request.customAlias(), request.expiresAt()));&#10;+        String requestHash = requestHasher.hash(new CreateShortUrlRequest(&#10;+                normalizedUrl, request.customAlias(), request.expiresAt(), request.singleUse()));&#10; &#10;         if (normalizedKey != null) {&#10;             var existing = repository.findByIdempotencyKey(normalizedKey);&#10;@@ -73,10 +74,12 @@ public class ShortUrlService {&#10;         for (int attempt = 1; attempt &lt;= CODE_GENERATION_ATTEMPTS; attempt++) {&#10;             String code = customAlias ? requestedAlias : codeGenerator.generate(properties.codeLength());&#10;             ShortUrlEntity entity = new ShortUrlEntity(UUID.randomUUID(), code, normalizedUrl, now,&#10;-                    request.expiresAt(), normalizedKey, requestHash);&#10;+                    request.expiresAt(), normalizedKey, requestHash, request.singleUse());&#10;             try {&#10;                 entity = repository.saveAndFlush(entity);&#10;-                redirectCache.put(entity.getShortCode(), entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());&#10;+                if (!entity.isSingleUse()) {&#10;+                    redirectCache.put(entity.getShortCode(), entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());&#10;+                }&#10;                 return toResponse(entity);&#10;             } catch (DataIntegrityViolationException ex) {&#10;                 if (normalizedKey != null) {&#10;@@ -133,7 +136,9 @@ public class ShortUrlService {&#10;         Instant now = clock.instant();&#10;         LinkStatus status = entity.getDeactivatedAt() != null&#10;                 ? LinkStatus.DEACTIVATED&#10;-                : entity.isExpired(now) ? LinkStatus.EXPIRED : LinkStatus.ACTIVE;&#10;+                : entity.isExpired(now)&#10;+                ? LinkStatus.EXPIRED&#10;+                : entity.isConsumed() ? LinkStatus.CONSUMED : LinkStatus.ACTIVE;&#10;         return new ShortUrlResponse(&#10;                 entity.getShortCode(),&#10;                 properties.baseUrl().replaceAll(&quot;/+$&quot;, &quot;&quot;) + &quot;/&quot; + entity.getShortCode(),&#10;diff --git a/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java b/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java&#10;index c3a3065..27986b4 100644&#10;--- a/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java&#10;+++ b/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java&#10;@@ -50,6 +50,22 @@ class UrlShortenerH2Test {&#10;                 .andExpect(jsonPath(&quot;$.events[0].userAgentFamily&quot;).value(&quot;curl&quot;));&#10;     }&#10; &#10;+    @Test&#10;+    void singleUseLinkRedirectsExactlyOnce() throws Exception {&#10;+        mvc.perform(post(&quot;/api/v1/urls&quot;)&#10;+                        .contentType(MediaType.APPLICATION_JSON)&#10;+                        .content(&quot;{\&quot;url\&quot;:\&quot;https://example.com/one-time\&quot;,\&quot;customAlias\&quot;:\&quot;onceonly\&quot;,\&quot;singleUse\&quot;:true}&quot;))&#10;+                .andExpect(status().isCreated())&#10;+                .andExpect(jsonPath(&quot;$.code&quot;).value(&quot;onceonly&quot;));&#10;+&#10;+        mvc.perform(get(&quot;/r/onceonly&quot;))&#10;+                .andExpect(status().isFound())&#10;+                .andExpect(header().string(&quot;Location&quot;, &quot;https://example.com/one-time&quot;));&#10;+&#10;+        mvc.perform(get(&quot;/r/onceonly&quot;))&#10;+                .andExpect(status().isGone());&#10;+    }&#10;+&#10;     @Test&#10;     void expirationContractAcceptsFutureAndRejectsPastTimestamps() throws Exception {&#10;         mvc.perform(post(&quot;/api/v1/urls&quot;)&#10;, module=null],&#10;    ToolAction[tool=GENERATE_DIFF, path=null, content=null, module=null]]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 
+
+Expected size: 4 but was: 2 in:
+[ToolAction[tool=APPLY_PATCH, path=null, content=diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java
+index b22dc15..7ae9de1 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java
+@@ -8,5 +8,14 @@ import java.time.Instant;
+ public record CreateShortUrlRequest(
+         @NotBlank @Size(max = 4096) String url,
+         @Size(max = 32) String customAlias,
+-        Instant expiresAt
+-) {}
++        Instant expiresAt,
++        Boolean singleUse
++) {
++    public CreateShortUrlRequest {
++        singleUse = Boolean.TRUE.equals(singleUse);
++    }
++
++    public CreateShortUrlRequest(String url, String customAlias, Instant expiresAt) {
++        this(url, customAlias, expiresAt, false);
++    }
++}
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java
+index f94a971..af30f26 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java
+@@ -3,5 +3,6 @@ package com.agentic.sdlc.urlshortener.api;
+ public enum LinkStatus {
+     ACTIVE,
+     EXPIRED,
+-    DEACTIVATED
++    DEACTIVATED,
++    CONSUMED
+ }
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java
+index 5d6aae9..a0743bc 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java
+@@ -30,6 +30,12 @@ public class ShortUrlEntity {
+     @Column(name = "deactivated_at")
+     private Instant deactivatedAt;
+ 
++    @Column(name = "single_use", nullable = false)
++    private boolean singleUse;
++
++    @Column(name = "consumed_at")
++    private Instant consumedAt;
++
+     @Column(name = "idempotency_key", unique = true, length = 200)
+     private String idempotencyKey;
+ 
+@@ -43,6 +49,11 @@ public class ShortUrlEntity {
+ 
+     public ShortUrlEntity(UUID id, String shortCode, String destinationUrl, Instant createdAt,
+                           Instant expiresAt, String idempotencyKey, String requestHash) {
++        this(id, shortCode, destinationUrl, createdAt, expiresAt, idempotencyKey, requestHash, false);
++    }
++
++    public ShortUrlEntity(UUID id, String shortCode, String destinationUrl, Instant createdAt,
++                          Instant expiresAt, String idempotencyKey, String requestHash, boolean singleUse) {
+         this.id = id;
+         this.shortCode = shortCode;
+         this.destinationUrl = destinationUrl;
+@@ -50,6 +61,7 @@ public class ShortUrlEntity {
+         this.expiresAt = expiresAt;
+         this.idempotencyKey = idempotencyKey;
+         this.requestHash = requestHash;
++        this.singleUse = singleUse;
+     }
+ 
+     public UUID getId() { return id; }
+@@ -58,6 +70,8 @@ public class ShortUrlEntity {
+     public Instant getCreatedAt() { return createdAt; }
+     public Instant getExpiresAt() { return expiresAt; }
+     public Instant getDeactivatedAt() { return deactivatedAt; }
++    public boolean isSingleUse() { return singleUse; }
++    public Instant getConsumedAt() { return consumedAt; }
+     public String getIdempotencyKey() { return idempotencyKey; }
+     public String getRequestHash() { return requestHash; }
+     public long getVersion() { return version; }
+@@ -66,8 +80,22 @@ public class ShortUrlEntity {
+         return expiresAt != null && !expiresAt.isAfter(now);
+     }
+ 
++    public boolean isConsumed() {
++        return singleUse && consumedAt != null;
++    }
++
+     public boolean isActive(Instant now) {
+-        return deactivatedAt == null && !isExpired(now);
++        return deactivatedAt == null && !isExpired(now) && !isConsumed();
++    }
++
++    public void consume(Instant now) {
++        if (!singleUse) {
++            throw new IllegalStateException("Only single-use links can be consumed");
++        }
++        if (consumedAt != null) {
++            throw new IllegalStateException("Single-use link is already consumed");
++        }
++        consumedAt = now;
+     }
+ 
+     public void deactivate(Instant now) {
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java
+index ac22c1f..148be0a 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java
+@@ -2,11 +2,23 @@ package com.agentic.sdlc.urlshortener.repository;
+ 
+ import com.agentic.sdlc.urlshortener.domain.ShortUrlEntity;
+ import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.data.jpa.repository.Modifying;
++import org.springframework.data.jpa.repository.Query;
++import org.springframework.data.repository.query.Param;
++import org.springframework.transaction.annotation.Transactional;
+ 
++import java.time.Instant;
+ import java.util.Optional;
+ import java.util.UUID;
+ 
+ public interface ShortUrlRepository extends JpaRepository<ShortUrlEntity, UUID> {
+     Optional<ShortUrlEntity> findByShortCode(String shortCode);
+     Optional<ShortUrlEntity> findByIdempotencyKey(String idempotencyKey);
++
++    @Modifying(clearAutomatically = true, flushAutomatically = true)
++    @Transactional
++    @Query("update ShortUrlEntity s set s.consumedAt = :now " +
++            "where s.shortCode = :shortCode and s.singleUse = true and s.consumedAt is null " +
++            "and s.deactivatedAt is null and (s.expiresAt is null or s.expiresAt > :now)")
++    int consumeSingleUseIfAvailable(@Param("shortCode") String shortCode, @Param("now") Instant now);
+ }
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java
+index d0b48fa..07f908b 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java
+@@ -8,7 +8,6 @@ import io.micrometer.core.instrument.Counter;
+ import io.micrometer.core.instrument.MeterRegistry;
+ import org.springframework.dao.DataAccessException;
+ import org.springframework.stereotype.Service;
+-import org.springframework.transaction.annotation.Transactional;
+ 
+ import java.time.Clock;
+ import java.time.Instant;
+@@ -33,7 +32,6 @@ public class RedirectService {
+         this.analyticsFailures = Counter.builder("url.analytics.record.failure").register(meterRegistry);
+     }
+ 
+-    @Transactional(readOnly = true)
+     public RedirectResult resolve(String code, String referrer, String userAgent) {
+         var cached = cache.get(code);
+         if (cached.isPresent()) {
+@@ -47,9 +45,22 @@ public class RedirectService {
+         }
+ 
+         cacheMisses.increment();
+-        ShortUrlEntity entity = repository.findByShortCode(code).orElseThrow(() -> new NotFoundException(code));
+-        ensureActive(entity, clock.instant());
+-        cache.put(code, entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++        ShortUrlEntity entity = repository.findByShortCode(code)
++                .orElseThrow(() -> new NotFoundException(code));
++        Instant now = clock.instant();
++        ensureActive(entity, now);
++
++        if (entity.isSingleUse()) {
++            int consumed = repository.consumeSingleUseIfAvailable(code, now);
++            if (consumed != 1) {
++                cache.evict(code);
++                throw new GoneException(code);
++            }
++            cache.evict(code);
++        } else {
++            cache.put(code, entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++        }
++
+         recordAnalytics(entity.getId(), referrer, userAgent);
+         return new RedirectResult(entity.getId(), entity.getDestinationUrl(), false);
+     }
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java
+index 3106d89..6607335 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java
+@@ -14,7 +14,8 @@ public class RequestHasher {
+     public String hash(CreateShortUrlRequest request) {
+         String canonical = request.url().trim() + "\n" +
+                 normalize(request.customAlias()) + "\n" +
+-                normalize(request.expiresAt());
++                normalize(request.expiresAt()) + "\n" +
++                request.singleUse();
+         try {
+             return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256")
+                     .digest(canonical.getBytes(StandardCharsets.UTF_8)));
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java
+index 1a7a389..d781d53 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java
+@@ -60,7 +60,8 @@ public class ShortUrlService {
+             throw new com.agentic.sdlc.urlshortener.api.InvalidRequestException("expiresAt", "must be in the future");
+         }
+         String normalizedKey = normalizeIdempotencyKey(idempotencyKey);
+-        String requestHash = requestHasher.hash(new CreateShortUrlRequest(normalizedUrl, request.customAlias(), request.expiresAt()));
++        String requestHash = requestHasher.hash(new CreateShortUrlRequest(
++                normalizedUrl, request.customAlias(), request.expiresAt(), request.singleUse()));
+ 
+         if (normalizedKey != null) {
+             var existing = repository.findByIdempotencyKey(normalizedKey);
+@@ -73,10 +74,12 @@ public class ShortUrlService {
+         for (int attempt = 1; attempt <= CODE_GENERATION_ATTEMPTS; attempt++) {
+             String code = customAlias ? requestedAlias : codeGenerator.generate(properties.codeLength());
+             ShortUrlEntity entity = new ShortUrlEntity(UUID.randomUUID(), code, normalizedUrl, now,
+-                    request.expiresAt(), normalizedKey, requestHash);
++                    request.expiresAt(), normalizedKey, requestHash, request.singleUse());
+             try {
+                 entity = repository.saveAndFlush(entity);
+-                redirectCache.put(entity.getShortCode(), entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++                if (!entity.isSingleUse()) {
++                    redirectCache.put(entity.getShortCode(), entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++                }
+                 return toResponse(entity);
+             } catch (DataIntegrityViolationException ex) {
+                 if (normalizedKey != null) {
+@@ -133,7 +136,9 @@ public class ShortUrlService {
+         Instant now = clock.instant();
+         LinkStatus status = entity.getDeactivatedAt() != null
+                 ? LinkStatus.DEACTIVATED
+-                : entity.isExpired(now) ? LinkStatus.EXPIRED : LinkStatus.ACTIVE;
++                : entity.isExpired(now)
++                ? LinkStatus.EXPIRED
++                : entity.isConsumed() ? LinkStatus.CONSUMED : LinkStatus.ACTIVE;
+         return new ShortUrlResponse(
+                 entity.getShortCode(),
+                 properties.baseUrl().replaceAll("/+$", "") + "/" + entity.getShortCode(),
+diff --git a/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java b/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java
+index c3a3065..27986b4 100644
+--- a/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java
++++ b/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java
+@@ -50,6 +50,22 @@ class UrlShortenerH2Test {
+                 .andExpect(jsonPath("$.events[0].userAgentFamily").value("curl"));
+     }
+ 
++    @Test
++    void singleUseLinkRedirectsExactlyOnce() throws Exception {
++        mvc.perform(post("/api/v1/urls")
++                        .contentType(MediaType.APPLICATION_JSON)
++                        .content("{\"url\":\"https://example.com/one-time\",\"customAlias\":\"onceonly\",\"singleUse\":true}"))
++                .andExpect(status().isCreated())
++                .andExpect(jsonPath("$.code").value("onceonly"));
++
++        mvc.perform(get("/r/onceonly"))
++                .andExpect(status().isFound())
++                .andExpect(header().string("Location", "https://example.com/one-time"));
++
++        mvc.perform(get("/r/onceonly"))
++                .andExpect(status().isGone());
++    }
++
+     @Test
+     void expirationContractAcceptsFutureAndRejectsPastTimestamps() throws Exception {
+         mvc.perform(post("/api/v1/urls")
+, module=null],
+    ToolAction[tool=GENERATE_DIFF, path=null, content=null, module=null]]
+	at com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest.greenfieldImplementationProducesGovernedPatchActions(DeterministicModelGatewayTest.java:72)
+]]></failure>
+  </testcase>
+  <testcase name="emitsStructuredJsonThatBindsToAgentOutput" classname="com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest" time="0.004"/>
+  <testcase name="brownfieldPersistenceRejectsUnnecessaryMutation" classname="com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest" time="0.002"/>
+</testsuite>

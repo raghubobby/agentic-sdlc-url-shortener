@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: ${URL_DB_URL:jdbc:postgresql://postgres:5432/aiassist?currentSchema=url_shortener}
+    username: ${URL_DB_USER:aiassist}
+    password: ${URL_DB_PASSWORD:aiassist}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    schemas: url_shortener
+    default-schema: url_shortener
+    create-schemas: true
+
+management:
+  health:
+    redis:
+      enabled: true
+
+url-shortener:
+  base-url: ${SHORT_URL_BASE_URL:http://localhost:8080/r}
+  cache-enabled: true
+
+app:
+  instance-id: ${APP_INSTANCE_ID:unknown}

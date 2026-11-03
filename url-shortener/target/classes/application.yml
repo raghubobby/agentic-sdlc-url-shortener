@@ -1,0 +1,50 @@
+server:
+  port: ${SERVER_PORT:8082}
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: url-shortener
+  datasource:
+    url: ${URL_DB_URL:jdbc:h2:mem:shortpath;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;INIT=CREATE SCHEMA IF NOT EXISTS url_shortener\;SET SCHEMA url_shortener}
+    username: ${URL_DB_USER:sa}
+    password: ${URL_DB_PASSWORD:}
+    driver-class-name: ${URL_DB_DRIVER:org.h2.Driver}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:create-drop}
+    properties:
+      hibernate:
+        default_schema: url_shortener
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 750ms
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  health:
+    redis:
+      enabled: false
+
+url-shortener:
+  base-url: ${SHORT_URL_BASE_URL:http://localhost:8082/r}
+  code-length: ${SHORT_URL_CODE_LENGTH:7}
+  cache-ttl: ${SHORT_URL_CACHE_TTL:PT10M}
+  cache-enabled: ${SHORT_URL_CACHE_ENABLED:false}
+
+app:
+  instance-id: ${APP_INSTANCE_ID:local-h2}

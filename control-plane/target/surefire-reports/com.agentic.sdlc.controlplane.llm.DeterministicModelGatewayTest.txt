@@ -1,0 +1,270 @@
+-------------------------------------------------------------------------------
+Test set: com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.115 s <<< FAILURE! -- in com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest
+com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest.greenfieldImplementationProducesGovernedPatchActions -- Time elapsed: 0.011 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected size: 4 but was: 2 in:
+[ToolAction[tool=APPLY_PATCH, path=null, content=diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java
+index b22dc15..7ae9de1 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/CreateShortUrlRequest.java
+@@ -8,5 +8,14 @@ import java.time.Instant;
+ public record CreateShortUrlRequest(
+         @NotBlank @Size(max = 4096) String url,
+         @Size(max = 32) String customAlias,
+-        Instant expiresAt
+-) {}
++        Instant expiresAt,
++        Boolean singleUse
++) {
++    public CreateShortUrlRequest {
++        singleUse = Boolean.TRUE.equals(singleUse);
++    }
++
++    public CreateShortUrlRequest(String url, String customAlias, Instant expiresAt) {
++        this(url, customAlias, expiresAt, false);
++    }
++}
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java
+index f94a971..af30f26 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/api/LinkStatus.java
+@@ -3,5 +3,6 @@ package com.agentic.sdlc.urlshortener.api;
+ public enum LinkStatus {
+     ACTIVE,
+     EXPIRED,
+-    DEACTIVATED
++    DEACTIVATED,
++    CONSUMED
+ }
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java
+index 5d6aae9..a0743bc 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/domain/ShortUrlEntity.java
+@@ -30,6 +30,12 @@ public class ShortUrlEntity {
+     @Column(name = "deactivated_at")
+     private Instant deactivatedAt;
+ 
++    @Column(name = "single_use", nullable = false)
++    private boolean singleUse;
++
++    @Column(name = "consumed_at")
++    private Instant consumedAt;
++
+     @Column(name = "idempotency_key", unique = true, length = 200)
+     private String idempotencyKey;
+ 
+@@ -43,6 +49,11 @@ public class ShortUrlEntity {
+ 
+     public ShortUrlEntity(UUID id, String shortCode, String destinationUrl, Instant createdAt,
+                           Instant expiresAt, String idempotencyKey, String requestHash) {
++        this(id, shortCode, destinationUrl, createdAt, expiresAt, idempotencyKey, requestHash, false);
++    }
++
++    public ShortUrlEntity(UUID id, String shortCode, String destinationUrl, Instant createdAt,
++                          Instant expiresAt, String idempotencyKey, String requestHash, boolean singleUse) {
+         this.id = id;
+         this.shortCode = shortCode;
+         this.destinationUrl = destinationUrl;
+@@ -50,6 +61,7 @@ public class ShortUrlEntity {
+         this.expiresAt = expiresAt;
+         this.idempotencyKey = idempotencyKey;
+         this.requestHash = requestHash;
++        this.singleUse = singleUse;
+     }
+ 
+     public UUID getId() { return id; }
+@@ -58,6 +70,8 @@ public class ShortUrlEntity {
+     public Instant getCreatedAt() { return createdAt; }
+     public Instant getExpiresAt() { return expiresAt; }
+     public Instant getDeactivatedAt() { return deactivatedAt; }
++    public boolean isSingleUse() { return singleUse; }
++    public Instant getConsumedAt() { return consumedAt; }
+     public String getIdempotencyKey() { return idempotencyKey; }
+     public String getRequestHash() { return requestHash; }
+     public long getVersion() { return version; }
+@@ -66,8 +80,22 @@ public class ShortUrlEntity {
+         return expiresAt != null && !expiresAt.isAfter(now);
+     }
+ 
++    public boolean isConsumed() {
++        return singleUse && consumedAt != null;
++    }
++
+     public boolean isActive(Instant now) {
+-        return deactivatedAt == null && !isExpired(now);
++        return deactivatedAt == null && !isExpired(now) && !isConsumed();
++    }
++
++    public void consume(Instant now) {
++        if (!singleUse) {
++            throw new IllegalStateException("Only single-use links can be consumed");
++        }
++        if (consumedAt != null) {
++            throw new IllegalStateException("Single-use link is already consumed");
++        }
++        consumedAt = now;
+     }
+ 
+     public void deactivate(Instant now) {
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java
+index ac22c1f..148be0a 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/repository/ShortUrlRepository.java
+@@ -2,11 +2,23 @@ package com.agentic.sdlc.urlshortener.repository;
+ 
+ import com.agentic.sdlc.urlshortener.domain.ShortUrlEntity;
+ import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.data.jpa.repository.Modifying;
++import org.springframework.data.jpa.repository.Query;
++import org.springframework.data.repository.query.Param;
++import org.springframework.transaction.annotation.Transactional;
+ 
++import java.time.Instant;
+ import java.util.Optional;
+ import java.util.UUID;
+ 
+ public interface ShortUrlRepository extends JpaRepository<ShortUrlEntity, UUID> {
+     Optional<ShortUrlEntity> findByShortCode(String shortCode);
+     Optional<ShortUrlEntity> findByIdempotencyKey(String idempotencyKey);
++
++    @Modifying(clearAutomatically = true, flushAutomatically = true)
++    @Transactional
++    @Query("update ShortUrlEntity s set s.consumedAt = :now " +
++            "where s.shortCode = :shortCode and s.singleUse = true and s.consumedAt is null " +
++            "and s.deactivatedAt is null and (s.expiresAt is null or s.expiresAt > :now)")
++    int consumeSingleUseIfAvailable(@Param("shortCode") String shortCode, @Param("now") Instant now);
+ }
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java
+index d0b48fa..07f908b 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RedirectService.java
+@@ -8,7 +8,6 @@ import io.micrometer.core.instrument.Counter;
+ import io.micrometer.core.instrument.MeterRegistry;
+ import org.springframework.dao.DataAccessException;
+ import org.springframework.stereotype.Service;
+-import org.springframework.transaction.annotation.Transactional;
+ 
+ import java.time.Clock;
+ import java.time.Instant;
+@@ -33,7 +32,6 @@ public class RedirectService {
+         this.analyticsFailures = Counter.builder("url.analytics.record.failure").register(meterRegistry);
+     }
+ 
+-    @Transactional(readOnly = true)
+     public RedirectResult resolve(String code, String referrer, String userAgent) {
+         var cached = cache.get(code);
+         if (cached.isPresent()) {
+@@ -47,9 +45,22 @@ public class RedirectService {
+         }
+ 
+         cacheMisses.increment();
+-        ShortUrlEntity entity = repository.findByShortCode(code).orElseThrow(() -> new NotFoundException(code));
+-        ensureActive(entity, clock.instant());
+-        cache.put(code, entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++        ShortUrlEntity entity = repository.findByShortCode(code)
++                .orElseThrow(() -> new NotFoundException(code));
++        Instant now = clock.instant();
++        ensureActive(entity, now);
++
++        if (entity.isSingleUse()) {
++            int consumed = repository.consumeSingleUseIfAvailable(code, now);
++            if (consumed != 1) {
++                cache.evict(code);
++                throw new GoneException(code);
++            }
++            cache.evict(code);
++        } else {
++            cache.put(code, entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++        }
++
+         recordAnalytics(entity.getId(), referrer, userAgent);
+         return new RedirectResult(entity.getId(), entity.getDestinationUrl(), false);
+     }
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java
+index 3106d89..6607335 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/RequestHasher.java
+@@ -14,7 +14,8 @@ public class RequestHasher {
+     public String hash(CreateShortUrlRequest request) {
+         String canonical = request.url().trim() + "\n" +
+                 normalize(request.customAlias()) + "\n" +
+-                normalize(request.expiresAt());
++                normalize(request.expiresAt()) + "\n" +
++                request.singleUse();
+         try {
+             return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256")
+                     .digest(canonical.getBytes(StandardCharsets.UTF_8)));
+diff --git a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java
+index 1a7a389..d781d53 100644
+--- a/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java
++++ b/url-shortener/src/main/java/com/agentic/sdlc/urlshortener/service/ShortUrlService.java
+@@ -60,7 +60,8 @@ public class ShortUrlService {
+             throw new com.agentic.sdlc.urlshortener.api.InvalidRequestException("expiresAt", "must be in the future");
+         }
+         String normalizedKey = normalizeIdempotencyKey(idempotencyKey);
+-        String requestHash = requestHasher.hash(new CreateShortUrlRequest(normalizedUrl, request.customAlias(), request.expiresAt()));
++        String requestHash = requestHasher.hash(new CreateShortUrlRequest(
++                normalizedUrl, request.customAlias(), request.expiresAt(), request.singleUse()));
+ 
+         if (normalizedKey != null) {
+             var existing = repository.findByIdempotencyKey(normalizedKey);
+@@ -73,10 +74,12 @@ public class ShortUrlService {
+         for (int attempt = 1; attempt <= CODE_GENERATION_ATTEMPTS; attempt++) {
+             String code = customAlias ? requestedAlias : codeGenerator.generate(properties.codeLength());
+             ShortUrlEntity entity = new ShortUrlEntity(UUID.randomUUID(), code, normalizedUrl, now,
+-                    request.expiresAt(), normalizedKey, requestHash);
++                    request.expiresAt(), normalizedKey, requestHash, request.singleUse());
+             try {
+                 entity = repository.saveAndFlush(entity);
+-                redirectCache.put(entity.getShortCode(), entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++                if (!entity.isSingleUse()) {
++                    redirectCache.put(entity.getShortCode(), entity.getId(), entity.getDestinationUrl(), entity.getExpiresAt());
++                }
+                 return toResponse(entity);
+             } catch (DataIntegrityViolationException ex) {
+                 if (normalizedKey != null) {
+@@ -133,7 +136,9 @@ public class ShortUrlService {
+         Instant now = clock.instant();
+         LinkStatus status = entity.getDeactivatedAt() != null
+                 ? LinkStatus.DEACTIVATED
+-                : entity.isExpired(now) ? LinkStatus.EXPIRED : LinkStatus.ACTIVE;
++                : entity.isExpired(now)
++                ? LinkStatus.EXPIRED
++                : entity.isConsumed() ? LinkStatus.CONSUMED : LinkStatus.ACTIVE;
+         return new ShortUrlResponse(
+                 entity.getShortCode(),
+                 properties.baseUrl().replaceAll("/+$", "") + "/" + entity.getShortCode(),
+diff --git a/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java b/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java
+index c3a3065..27986b4 100644
+--- a/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java
++++ b/url-shortener/src/test/java/com/agentic/sdlc/urlshortener/UrlShortenerH2Test.java
+@@ -50,6 +50,22 @@ class UrlShortenerH2Test {
+                 .andExpect(jsonPath("$.events[0].userAgentFamily").value("curl"));
+     }
+ 
++    @Test
++    void singleUseLinkRedirectsExactlyOnce() throws Exception {
++        mvc.perform(post("/api/v1/urls")
++                        .contentType(MediaType.APPLICATION_JSON)
++                        .content("{\"url\":\"https://example.com/one-time\",\"customAlias\":\"onceonly\",\"singleUse\":true}"))
++                .andExpect(status().isCreated())
++                .andExpect(jsonPath("$.code").value("onceonly"));
++
++        mvc.perform(get("/r/onceonly"))
++                .andExpect(status().isFound())
++                .andExpect(header().string("Location", "https://example.com/one-time"));
++
++        mvc.perform(get("/r/onceonly"))
++                .andExpect(status().isGone());
++    }
++
+     @Test
+     void expirationContractAcceptsFutureAndRejectsPastTimestamps() throws Exception {
+         mvc.perform(post("/api/v1/urls")
+, module=null],
+    ToolAction[tool=GENERATE_DIFF, path=null, content=null, module=null]]
+	at com.agentic.sdlc.controlplane.llm.DeterministicModelGatewayTest.greenfieldImplementationProducesGovernedPatchActions(DeterministicModelGatewayTest.java:72)
+

@@ -1,0 +1,18 @@
+package com.agentic.sdlc.controlplane.agent;
+
+public enum AgentCapability {
+    READ_REQUIREMENT,
+    READ_ARTIFACTS,
+    READ_REPOSITORY,
+    WRITE_ENGINEERING_ARTIFACT,
+    WRITE_WORKTREE,
+    RUN_BUILD,
+    RUN_TESTS,
+    RUN_SECURITY_SCAN,
+    GENERATE_DIFF,
+    REQUEST_HUMAN_REVIEW,
+    RUN_SHELL,
+    WRITE_MAIN,
+    GIT_PUSH,
+    DEPLOY_PRODUCTION
+}

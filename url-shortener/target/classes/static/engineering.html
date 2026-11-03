@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Engineering Evidence — ShortPath</title>
+  <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<div class="shell evidence-shell">
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark">↗</span><span>ShortPath</span></a>
+    <nav><a href="/">Product demo</a><a class="status-link" href="/actuator/health" target="_blank" rel="noreferrer"><span class="status-dot"></span> API health</a></nav>
+  </header>
+  <main>
+    <section class="evidence-hero">
+      <div class="eyebrow">Assessment evidence</div>
+      <h1>AI-assisted.<br/><span>Engineer-owned.</span></h1>
+      <p class="hero-copy">AI was used to accelerate requirement analysis, decomposition, implementation, testing, debugging, documentation, and review preparation. Engineering decisions, validation, and production-readiness remain human-owned.</p>
+    </section>
+
+    <section class="principle-grid">
+      <article><div class="step">01</div><h3>AI proposes</h3><p>Structured analysis, implementation suggestions, tests, refactors, and review preparation.</p></article>
+      <article><div class="step">02</div><h3>Engineer decides</h3><p>Accept, edit, reject, or re-prompt with explicit rationale and constraints.</p></article>
+      <article><div class="step">03</div><h3>Tools validate</h3><p>Compilation, unit/integration tests, static analysis, security checks, and performance evidence.</p></article>
+      <article><div class="step">04</div><h3>Engineer owns</h3><p>Correctness, maintainability, risk acceptance, and final production-readiness sign-off.</p></article>
+    </section>
+
+    <section class="panel-section">
+      <div class="section-heading"><div><div class="eyebrow">Required scenarios</div><h2>Three different engineering situations</h2></div></div>
+      <div class="scenario-grid">
+        <article class="scenario-card"><span class="scenario-tag">Greenfield</span><h3>New capability</h3><p>Decompose a new URL-shortener capability, establish acceptance criteria, implement, and validate without unnecessary architecture.</p><ul><li>Requirement normalization</li><li>API/schema design</li><li>Tests and release evidence</li></ul></article>
+        <article class="scenario-card"><span class="scenario-tag">Brownfield</span><h3>Existing-code change</h3><p>Reason from the existing redirect/cache/data flow, find the smallest safe change, and prove no regression.</p><ul><li>Impacted modules/data flows</li><li>Targeted fix</li><li>Regression and reliability checks</li></ul></article>
+        <article class="scenario-card"><span class="scenario-tag">Ambiguous</span><h3>Clarify before coding</h3><p>AI surfaces unresolved product/security questions; the engineer makes the authoritative decision before implementation proceeds.</p><ul><li>No invented requirements</li><li>Explicit assumptions</li><li>Human-owned trade-offs</li></ul></article>
+      </div>
+    </section>
+
+    <section class="panel-section">
+      <div class="section-heading"><div><div class="eyebrow">Selected decisions</div><h2>Complexity was added only where justified</h2></div></div>
+      <div class="decision-list">
+        <div><strong>PostgreSQL is the source of truth.</strong><span>Durable URL mappings, idempotency, and analytics persistence.</span></div>
+        <div><strong>Redis is optional.</strong><span>Redirect cache failures fall back to PostgreSQL instead of taking the service down.</span></div>
+        <div><strong>No Kafka.</strong><span>No demonstrated throughput, replay, or multi-consumer requirement justified distributed messaging.</span></div>
+        <div><strong>Database constraints own uniqueness.</strong><span>Short-code collisions are retried after the authoritative unique constraint detects them.</span></div>
+        <div><strong>Versioned Flyway migrations are immutable.</strong><span>Schema corrections use forward migrations rather than rewriting applied history.</span></div>
+        <div><strong>AI does not self-approve.</strong><span>Deterministic tests and engineer review provide the evidence used for acceptance.</span></div>
+      </div>
+    </section>
+  </main>
+  <footer><div>Detailed evidence is retained in <code>docs/</code> in the repository.</div><a href="/">← Back to product demo</a></footer>
+</div>
+</body>
+</html>

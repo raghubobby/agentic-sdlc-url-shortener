@@ -1,0 +1,17 @@
+FROM maven:3.9.11-eclipse-temurin-21 AS build
+WORKDIR /build
+COPY pom.xml .
+COPY control-plane/pom.xml control-plane/pom.xml
+COPY url-shortener/pom.xml url-shortener/pom.xml
+RUN mvn -q dependency:go-offline
+COPY control-plane control-plane
+COPY url-shortener url-shortener
+RUN mvn -q -pl control-plane -am -DskipTests package
+
+FROM maven:3.9.11-eclipse-temurin-21
+RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY --from=build /root/.m2 /root/.m2
+COPY --from=build /build/control-plane/target/control-plane-*.jar app.jar
+EXPOSE 8081
+ENTRYPOINT ["java","-jar","/app/app.jar"]
